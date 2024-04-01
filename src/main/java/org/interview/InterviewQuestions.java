@@ -1,4 +1,4 @@
-package org.example;
+package org.interview;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
@@ -10,13 +10,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class InterviewQuestions {
 
     public static void main(String[] args) throws InterruptedException {
+
+        // Changing the default download path
 
         String downloadFilePath = "D:\\Selenium Projects\\InterviewQuestions\\downloaded files";
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("download.default_directory", downloadFilePath);
+
+        // disabling the show notifications popup - 1 to accept and 2 to disable
         prefs.put("profile.default_content_setting_values.notifications", 2);
 
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -39,6 +43,7 @@ public class Main {
         WebDriverWait webDriverWait =new WebDriverWait(driver, 50);
         webDriverWait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
+        // Handling multiple windows
         for(String windowHandle : driver.getWindowHandles()){
             if(!originalWindow.contentEquals(windowHandle)){
                 driver.switchTo().window(windowHandle);
